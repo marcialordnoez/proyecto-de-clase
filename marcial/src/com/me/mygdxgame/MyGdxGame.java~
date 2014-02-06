@@ -15,7 +15,6 @@ public class MyGdxGame implements ApplicationListener {
 	private SpriteBatch batch;
 	private Texture texture;
 	private Sprite sprite;
-	private Sprite sprite2;
 	int rotacion ;
 	@Override
 	public void create() {		
@@ -31,7 +30,6 @@ public class MyGdxGame implements ApplicationListener {
 		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
 		
 		sprite = new Sprite(region);
-		sprite2 = new Sprite(region);
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
@@ -45,17 +43,15 @@ public class MyGdxGame implements ApplicationListener {
 	}
 
 	@Override
-	public void render() {	
-		if(Gdx.input.isTouched())
+	public void render() {		
 		sprite.setRotation(rotacion);
-		rotacion+=10;
+		rotacion++;
 		Gdx.gl.glClearColor(-0.3f, 0.7f, 1.1f, 10);
-		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT); 
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		sprite.draw(batch);
-		sprite2.draw(batch);
 		batch.end();
 	}
 
