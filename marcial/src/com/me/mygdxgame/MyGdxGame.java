@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class MyGdxGame implements ApplicationListener {
+	private Texture texture_nave;
+	private Sprite sprite_nave;
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
@@ -27,6 +29,7 @@ public class MyGdxGame implements ApplicationListener {
 		
 		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		texture_nave = new Texture(Gdx.files.internal("data/nave.png"));
 		
 		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275);
 		
@@ -36,8 +39,11 @@ public class MyGdxGame implements ApplicationListener {
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
 	    sprite.setPosition(0,0);
-	    sprite.setRotation(25);} 
-        
+	    sprite.setRotation(25); 
+        sprite_nave = new Sprite(texture_nave, 128 ,64);
+        sprite_nave.setPosition(-0.5f,-0.5f);
+        sprite_nave.setSize(0.5f,0.5f);
+	}
 	@Override
 	public void dispose() {
 		batch.dispose();
@@ -56,6 +62,7 @@ public class MyGdxGame implements ApplicationListener {
 		batch.begin();
 		sprite.draw(batch);
 		sprite2.draw(batch);
+		sprite_nave.draw(batch);
 		batch.end();
 	}
 
